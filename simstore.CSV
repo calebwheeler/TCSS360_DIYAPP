@@ -1,27 +1,28 @@
-name,cost,width,height,depth,wieght
-box of nails,1.33,0,1,0,0.1
-2x4 board,1.50,4,6,2,5
-4x6 baord,1.75,0,0,0,0
-plywood board,8.26,0,0,0,0
-doorknob,10.76,0,0,0,0
-concrete,3.23,0,0,0,0
-box of crews,2.63,0,0,0,0
-sheet rock,12.27,0,0,0,0
-carpet,100.64,0,0,0,0
-tile,6.77,0,0,0,0
-wood glue,4.83,0,0,0,0
-light bulb,3.53,0,0,0,0
-light fixure,56.73,0,0,0,0
-toilet,99.99,0,0,0,0
-bathtub,325.72,0,0,0,0
-calking,6.34,0,0,0,0
-tape,1.65,0,0,0,0
-fencing,12.79,0,0,0,0
-cedar boards,5.67,0,0,0,0
-t posts,10.63,0,0,0,0
-barbed wire,15.33,0,0,0,0
-window,175.33,0,0,0,0
-indoor trim,6.75,0,0,0,0
-outdoor trim,8.75,0,0,0,0
-sod,16.53,0,0,0,0
-paint,14.63,0,0,0,0
+Name,Cost,Width,Height,Depth,Weight
+Box of nails,1.33,0,1,0,0.1
+2x4 Board,1.50,4,6,2,5
+4x6 Board,1.75,0,0,0,0
+Ply-Wood Board,8.26,0,0,0,0
+Door Knob,10.76,0,0,0,0
+Concrete,3.23,0,0,0,0
+Box of Screws,2.63,0,0,0,0
+Sheet-Rock,12.27,0,0,0,0
+Carpet,100.64,0,0,0,0
+Tile,6.77,0,0,0,0
+Wood Glue,4.83,0,0,0,0
+Light Bulb,3.53,0,0,0,0
+Light Fixture,56.73,0,0,0,0
+Toilet,99.99,0,0,0,0
+Bathtub,325.72,0,0,0,0
+Silicon Tube,6.34,0,0,0,0
+Tape,1.65,0,0,0,0
+Fencing,12.79,0,0,0,0
+Cedar Boards,5.67,0,0,0,0
+T-Posts,10.63,0,0,0,0
+Barbed Wire,15.33,0,0,0,0
+Window,175.33,0,0,0,0
+Indoor Trim,6.75,0,0,0,0
+Outdoor Trim,8.75,0,0,0,0
+Sod,16.53,0,0,0,0
+Paint,14.63,0,0,0,0
+Sink,102.63,0,0,0,0

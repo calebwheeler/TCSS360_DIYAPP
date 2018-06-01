@@ -36,7 +36,7 @@ public class Material implements Serializable{
     }
 
     public String toString() {
-        return  myName + "\nCost = " + myPrice + "\nMeasurment = " + myMeasurement.toString() + "\n\n";
+        return  myName + "\nCost = $" + myPrice + "\nMeasurment = " + myMeasurement.toString() + "\n\n";
     }
 
     public double totalCost() {

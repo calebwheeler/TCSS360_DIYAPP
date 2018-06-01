@@ -82,6 +82,7 @@ public class ProjectPanel extends JPanel implements ActionListener{
          * panel to ask user if they want to use an existing or create a new project.
          * @param projectPanel
          * @author caleb
+         * @author david add current project
          */
         private ProjectAskPanel(ProjectPanel projectPanel) {
             //create new project button
@@ -97,6 +98,13 @@ public class ProjectPanel extends JPanel implements ActionListener{
             //add buttons
             this.add(btnNewProject,BorderLayout.WEST);
             this.add(btnExistingProject, BorderLayout.EAST);
+            
+//            if (ProjectManager.getCurrentProjectIndex() != null ) {
+//                JPanel test = new JPanel();
+//                test.add(new ProjectEditPanel(projectPanel,ProjectManager.getProject(ProjectManager.getCurrentProjectIndex())));
+//                this.add(test);
+//            }
+
         }
     }
 

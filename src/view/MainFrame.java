@@ -90,7 +90,6 @@ public class MainFrame extends JFrame {
         
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
-        //setSize(new Dimension(width, height));
         frameDimension = new Dimension((int)(size.getWidth() * REDUCTION),
                 (int)(size.getHeight() * REDUCTION));
         setSize(new Dimension((int)(frameDimension.getWidth()),
