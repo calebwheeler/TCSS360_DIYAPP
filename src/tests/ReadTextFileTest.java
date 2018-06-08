@@ -1,9 +1,11 @@
-package main;
+package tests;
 import static org.junit.Assert.*;
 
 import java.io.FileNotFoundException;
 
 import org.junit.Test;
+
+import main.ReadTextFile;
 
 /**
  * JUnit tests for the class ReadTextFile
@@ -12,7 +14,7 @@ import org.junit.Test;
  * 
  * @version Apr 29, 2018
  */
-public class TestReadTextFile {
+public class ReadTextFileTest {
 
     String validFilename = "testAbout.txt";
 
@@ -50,6 +52,5 @@ public class TestReadTextFile {
         }
         assertTrue(thrown);
     }
-
 
 }

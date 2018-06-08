@@ -9,6 +9,7 @@ import javax.swing.JPanel;
  * The JPanel class used to display different panels.
  *
  * @author Jim Phan phanjim2@hotmail.com
+ * 
  * @version May 17, 2018
  */
 public class DisplayPanel extends JPanel {

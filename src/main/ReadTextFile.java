@@ -9,17 +9,13 @@ import java.io.IOException;
 /**
  * The main method that runs the program.
  *
- * @author Jim Phan phanjim2@hotmail.com
- * @author David Guerrero
- * @author Michelle Brown
+ * @author TODO fill in_________
  * 
- * dirtywater365@gmail.com
- * @version Apr 29, 2018
+ * @version Apr 29, 2018 <--- ?? TODO fill in_________
  */
 public class ReadTextFile {
 
     public String myText = "";
-
 
     /**
      * Reads the contents of a file, and stores them in a public variable.
@@ -45,7 +41,6 @@ public class ReadTextFile {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
     }
 
 }

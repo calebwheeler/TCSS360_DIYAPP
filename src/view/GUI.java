@@ -8,6 +8,7 @@ import javax.swing.JFrame;
  * The graphical user interface used to show the user.
  *
  * @author Jim Phan phanjim2@hotmail.com
+ * 
  * @version Apr 26, 2018
  */
 public class GUI {

@@ -6,6 +6,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * Represents a DIY project that keeps track of materials, measurements, receipts and such.
+ * 
+ * @author Caleb Wheeler
+ * 
+ * @version May 28, 2018
+ */
 public class Project implements Serializable{
     
     /**
@@ -13,19 +20,34 @@ public class Project implements Serializable{
      */
     private static final long serialVersionUID = 3274616962318959161L;
     
+    /**
+     * The formatting used for the Date class.
+     */
     public static final String DATE_FORMAT = "MM/dd/yyyy";
     
+    /**
+     * Title of the project.
+     */
     private String myTitle;
+    
     private Date myDateLastModified;
     private Date myDateCreated;
+    
+    /**
+     * List of materials.
+     */
     private ArrayList<Material> myMaterials = new ArrayList<Material>();
+    
+    /**
+     * List of receipts.
+     */
     private ArrayList<Receipt> myReceipts = new ArrayList<Receipt>();
   //graph and price estimate can be obtained with buildGraph() and estimateTotal()
     
     /**
      * create a project with a specified title and no materials.
+     * 
      * @param projectTitle
-     * @author Caleb Wheeler
      */
     public Project(String projectTitle){
         this(projectTitle, new ArrayList<Material>(), new ArrayList<Receipt>());
@@ -46,9 +68,11 @@ public class Project implements Serializable{
     /**
      * create a project with this title and these materials.
      * The project will have a start Date for the current date.
+     * 
      * @param projectTitle
      * @param projectMaterials
-     * @author Caleb Wheeler
+     * 
+     * @author Caleb
      */
     public Project(String projectTitle, ArrayList<Material> projectMaterials) {
         this(projectTitle, projectMaterials, new ArrayList<Receipt>());
@@ -57,9 +81,11 @@ public class Project implements Serializable{
     /**
      * create a project with this title and these materials and receipts.
      * The project will have a start Date for the current date.
-     * @param projectTitle
-     * @param projectMaterials
-     * @author Caleb Wheeler
+     * 
+     * @param projectTitle Title of the project.
+     * @param projectMaterials The list of Materials.
+     * 
+     * @author Caleb
      */
     public Project(String projectTitle, ArrayList<Material> projectMaterials, ArrayList<Receipt> projectReceipts) {
         myTitle = projectTitle;
@@ -69,6 +95,9 @@ public class Project implements Serializable{
         myReceipts = projectReceipts;
     }
     
+    /**
+     * @author Caleb
+     */
     public String getTitle() {
         return myTitle;
     }
@@ -87,8 +116,11 @@ public class Project implements Serializable{
     
     /**
      * replace all of the projects materials with these.
+     * 
+     * @param theMaterials
      * @return
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public void replaceMaterials(List<Material> theMaterials) {
         myMaterials = new ArrayList<Material>();
@@ -100,8 +132,10 @@ public class Project implements Serializable{
     
     /**
      * replace all of the project receipts with these.
+     * 
      * @param theReceipts
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public void replaceReceipts(List<Receipt> theReceipts) {
         myReceipts = new ArrayList<Receipt>();
@@ -113,8 +147,10 @@ public class Project implements Serializable{
     
     /**
      * return a deep clone of the materials
-     * @return
-     * @author caleb
+     * 
+     * @return A cloned copy of the materials.
+     * 
+     * @author Caleb
      */
     public  ArrayList<Material> getMaterials() {
         ArrayList<Material> copyOfMaterials = new ArrayList<Material>();
@@ -126,8 +162,10 @@ public class Project implements Serializable{
     
     /**
      * return a deep clone of the receipts.
+     * 
      * @return
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public ArrayList<Receipt> getReceipts() {
         ArrayList<Receipt> copyOfReceipts = new ArrayList<Receipt>();
@@ -139,8 +177,10 @@ public class Project implements Serializable{
     
     /**
      * updates project title and updates date last modified.
+     * 
      * @param theProjectTitle
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public void changeProjectTitle(String theProjectTitle) {
         myTitle = theProjectTitle;
@@ -149,9 +189,11 @@ public class Project implements Serializable{
     
     /**
      * remove the material from the list and update date last modified.
+     * 
      * @return returns true if the material was removed and false if the material wasn't found.
      * @param theMaterial
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public boolean removeMaterial(Material theMaterial) {
         boolean removed = myMaterials.remove(theMaterial);
@@ -165,8 +207,10 @@ public class Project implements Serializable{
     
     /**
      * Add a single material to the list of this projects materials.
+     * 
      * @param theMaterial
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public void addMaterial(Material theMaterial) {
         myDateLastModified = new Date();
@@ -176,9 +220,11 @@ public class Project implements Serializable{
     
     /**
      * remove the receipt from the list and update date last modified.
+     * 
      * @return returns true if the receipt was removed and false if the receipt wasn't found.
-     * @param rec
-     * @author caleb
+     * @param rec the receipt to be removed
+     * 
+     * @author Caleb
      */
     public boolean removeReceipt(Receipt rec) {
         boolean removed = myReceipts.remove(rec);
@@ -191,8 +237,10 @@ public class Project implements Serializable{
     
     /**
      * Add a single receipt to the list of this projects receipts.
+     * 
      * @param theReceipt
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public void addReceipt(Receipt theReceipt) {
         myDateLastModified = new Date();
@@ -201,8 +249,10 @@ public class Project implements Serializable{
     
     /**
      * Builds and returns a graph based on the receipts for this project.
+     * 
      * @return a graph for this project.
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public Graph buildGraph() {
         /*
@@ -218,8 +268,10 @@ public class Project implements Serializable{
     
     /**
      * gets the estimated total for the materials and receipts.
+     * 
      * @return the material total for the materials and receipts.
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public Double estimateTotal() {
         Double total = 0.0;
@@ -230,11 +282,6 @@ public class Project implements Serializable{
             total += myReceipts.get(i).getCost();
         }
         return total;
-    }
-    
-    public Double getCostOverTime() {
-        //maybe date that the project pays off in heating efficiency?
-        return null;
     }
 
     //auto generated code

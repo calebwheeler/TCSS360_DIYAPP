@@ -3,6 +3,7 @@ package model;
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.Comparator;
 import java.util.Date;
 
 /**
@@ -10,7 +11,9 @@ import java.util.Date;
  * A user can get a receipt from a Material they purchased in the shop,
  * or they can enter the information from an item purchased elsewhere.
  * 
- * @author Michelle
+ * @author Michelle Brown
+ * 
+ * @version May 29, 2018
  */
 public class Receipt implements Serializable {
     
@@ -19,27 +22,37 @@ public class Receipt implements Serializable {
      */
     private static final long serialVersionUID = -8491951796110188642L;
 
-    public String title;
+    private String myTitle;
 
-    public double cost;
+    private double myCost;
     
-    public LocalDate date;
+    private LocalDate myDate;
     
-    public String note;
+    private String myNote;
     
     /**
-     * Constructor for a Material bought in the shop.
+     * Constructor for a Material's receipt bought in the shop.
      * 
      * @param material
      */
     public Receipt(Material material) {
-        title = material.myName;
-        cost = material.myPrice;
-        date = LocalDate.now();
-        note = "measurement: " + material.myMeasurement.toString() + "\nquantity: " + material.myAmount;
+        myTitle = material.getName();
+        myCost = material.totalCost();
+        myDate = LocalDate.now();
+        myNote = "measurement: " + material.getMeasurements() +
+                        "\nquantity: " + myCost;
     }
     
-    //added by caleb
+    /**
+     * Constructor for something that was bought outside of the shop.
+     * 
+     * @param title
+     * @param cost
+     * @param date
+     * @param note
+     * 
+     * @author Caleb
+     */
     public Receipt(String title, double cost, Date date, String note) {
         this(title, cost, new SimpleDateFormat("MM/dd/yyyy").format(date), note);
     }
@@ -51,19 +64,71 @@ public class Receipt implements Serializable {
      * @param cost
      * @param note
      */
-    public Receipt(String title, double cost, String date, String note) { //date in the form MM/dd/yyyy
-        this.cost = cost;
-        this.date = LocalDate.now().minusDays(0/*days to subtract to get the actual time purchased.
-        should use the string passed in to determine how long ago it was*/); //TODO figure this out
-        this.note = note;
+    public Receipt(String title, double cost, String date, String note) {
+        //date in the form MM/dd/yyyy
+        myTitle = title;
+        myCost = cost;
+        myDate = LocalDate.now().minusDays(0/*days to subtract to get the actual time purchased.
+        should use the string passed in to determine how long ago it was*/);
+        //TODO figure this out
+        myNote = note;
     }
     
     public Double getCost() {
-        return cost;
+        return myCost;
+    }
+    
+    public String getTitle() {
+        return myTitle;
+    }
+    
+    /**
+     * Return the date of the receipt.
+     * 
+     * @return The date of the receipt.
+     * @author Jim
+     */
+    public LocalDate getDate() {
+        return myDate;
+    }
+    
+    /**
+     * Return the note of the receipt.
+     * 
+     * @return the note of the receipt.
+     * @author Jim
+     */
+    public String getNote() {
+        return myNote;
     }
     
     public String toString() {
-        return "Material: title\n cost: " + cost + "\n date purchased: " + date.toString() + "\n note:\n" + note;
+        return "Material: title\n cost: " + myCost + "\n date purchased: " +
+                        myDate.toString() + "\n note:\n" + myNote;
     }
     
+    /**
+     * Returns a comparator used to sort the receipts.
+     * 
+     * @return A comparator used to sort the receipts.
+     * @author Jim
+     */
+    public static Comparator<Receipt> getComparator() {
+        return new ReceiptComparator();
+    }
+    
+    /**
+     * Comparator class used to compare the Receipts.
+     * 
+     * @author Jim Phan
+     * @version 6/4/2018
+     */
+    private static class ReceiptComparator implements Comparator<Receipt> {
+
+        @Override
+        public int compare(Receipt o1, Receipt o2) {
+            return o1.getDate().compareTo(o2.getDate());
+        }
+        
+    }
 }

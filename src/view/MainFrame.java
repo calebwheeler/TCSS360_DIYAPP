@@ -17,6 +17,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+
 import model.Utility;
 import model.Project;
 import model.ProjectManager;
@@ -33,9 +34,11 @@ import view.panel.ShopPanel;
 /**
  * The Main frame the user sees. It houses the home screen and its buttons.
  *
- * @author Jim Phan phanjim2@hotmail.com Jim Was here
+ * @author Jim Phan phanjim2@hotmail.com
+ * @author Caleb Wheeler
+ * @author Michelle Brown
  * 
- * @version Apr 29, 2018
+ * @version May 29, 2018
  */
 public class MainFrame extends JFrame {
 
@@ -83,7 +86,9 @@ public class MainFrame extends JFrame {
      * 
      * @param width Width of the frame.
      * @param height Height of the frame.
-     * @throws IOException 
+     * @throws IOException
+     * 
+     * @author Jim
      */
     public MainFrame(int width, int height) throws IOException {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
@@ -108,8 +113,11 @@ public class MainFrame extends JFrame {
      * 
      * @param width
      * @param height
-     * @return
+     * @return the side panel that was created
      * @throws IOException
+     * 
+     * @author Jim
+     * @author Michelle added images and paths
      */
     private JPanel createSidePanel(int width, int height) throws IOException {
         JPanel panel = new JPanel();
@@ -131,13 +139,13 @@ public class MainFrame extends JFrame {
      * Creates a specific button for the SidePanel menu that will be used
      * to access its corresponding "page".
      * 
-     * @param name
-     * @param icon
-     * @return
+     * @param name the name if the page to be attatched to the button
+     * @param icon the picture for the button
+     * @return the button that was created
      * @throws IOException
      * 
      * @author Jim
-     * @author Michelle
+     * @author Michelle added icons
      */
     private JButton createButton(PAGE name, String icon) throws IOException {
         ProjectManager.loadProjects();
@@ -154,7 +162,13 @@ public class MainFrame extends JFrame {
         return button;
     }
     
-    
+    /**
+     * Changes the dynamic panel
+     * 
+     * @param name name of the page to switch to
+     * 
+     * @author Jim
+     */
     public void changePanel(PAGE name) {
         if(name != PAGE.REPORT && name != PAGE.SHOP || ProjectManager.getCurrentProjectIndex() != null) {
             displayPanel.remove(dynamicPanel);
@@ -165,15 +179,17 @@ public class MainFrame extends JFrame {
             //project hasn't been selected yet so can't open shop or report page
             System.out.println("No project selected yet!");
         }
-
     }
     
     /**
      * A pseudo DisplayPanel factory that creates the panel to display
      * based on the button pressed in the SidePanel.
      * 
-     * @param name
-     * @return
+     * @param name of the page to create
+     * @return the panel that was created
+     * 
+     * @author Jim
+     * @author Michelle added home and about page
      */
      private JPanel createPanel(PAGE name) {
         JPanel panel = null;
@@ -194,7 +210,7 @@ public class MainFrame extends JFrame {
             
             panel = new ShopPanel(testStore);
             
-        } else if(name.equals(PAGE.ABOUT)){
+        } else if(name.equals(PAGE.ABOUT)){ //Michelle's code
             String aboutText = "";
             try {
                 aboutText = Utility.ReadTextFile("testAbout.txt");
@@ -215,8 +231,10 @@ public class MainFrame extends JFrame {
     
     /**
      * change the title of the frame to reflect the current project.
+     * 
      * @param title
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public void SetTitle(String title) {
         this.setTitle("DIY Project\t -" + title);

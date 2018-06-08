@@ -25,6 +25,14 @@ import model.Receipt;
 import view.MainFrame;
 import view.MainFrame.PAGE;
 
+/**
+ * The Panel that handles displaying and adding information about the user's projects.
+ * 
+ * @author Caleb Wheeler
+ * @author Michelle Brown
+ * 
+ * @version May 29, 2018
+ */
 public class ProjectPanel extends JPanel implements ActionListener{
 
     /**
@@ -45,7 +53,6 @@ public class ProjectPanel extends JPanel implements ActionListener{
                     return c;
                 }
             }
-
             System.err.println("In ProjectPanel.java\nInvalid action command:" + actionCommand);
             return null;
         }
@@ -56,8 +63,10 @@ public class ProjectPanel extends JPanel implements ActionListener{
 
     /**
      * base panel to hold the display panels.
+     * 
      * @param panelDimensions
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public ProjectPanel(Dimension panelDimensions) {
         displayPanel = new ProjectAskPanel(this);
@@ -69,8 +78,8 @@ public class ProjectPanel extends JPanel implements ActionListener{
 
     /**
      * panel for asking the user if they want a new project or existing project
-     * @author caleb
-     *
+     * 
+     * @author Caleb
      */
     private class ProjectAskPanel extends JPanel {
         /**
@@ -80,9 +89,10 @@ public class ProjectPanel extends JPanel implements ActionListener{
 
         /**
          * panel to ask user if they want to use an existing or create a new project.
+         * 
          * @param projectPanel
-         * @author caleb
-         * @author david add current project
+         * @author Caleb
+         * @author David add current project
          */
         private ProjectAskPanel(ProjectPanel projectPanel) {
             //create new project button
@@ -110,8 +120,9 @@ public class ProjectPanel extends JPanel implements ActionListener{
 
     /**
      * this panel allows viewing all receipts for the current project and removing receipts from the project.
-     * @author caleb
-     * @author Michelle
+     * 
+     * @author Caleb
+     * @author Michelle added "add receipt" button
      */
     private class ProjectReceiptsPanel extends JPanel {
 
@@ -239,8 +250,8 @@ public class ProjectPanel extends JPanel implements ActionListener{
 
     /**
      * this panel allows viewing all materials for the current project and removing materials from the project.
-     * @author caleb
-     *
+     * 
+     * @author Caleb
      */
     private class ProjectMaterialsPanel extends JPanel {
         /**
@@ -283,8 +294,8 @@ public class ProjectPanel extends JPanel implements ActionListener{
 
     /**
      * panel for editing an existing project or creating a new project.
-     * @author caleb
-     *
+     * 
+     * @author Caleb
      */
     private class ProjectEditPanel extends JPanel {
 
@@ -303,7 +314,8 @@ public class ProjectPanel extends JPanel implements ActionListener{
 
         /**
          * panel for editing a new project.
-         * @author caleb
+         * 
+         * @author Caleb
          */
         private ProjectEditPanel(ProjectPanel projectPanel) {
             this(projectPanel, null);
@@ -311,9 +323,11 @@ public class ProjectPanel extends JPanel implements ActionListener{
 
         /**
          * panel for editing a project.
+         * 
          * @param projectPanel
          * @param theProject existing project or null if this is for a new project
-         * @author caleb
+         * 
+         * @author Caleb
          */
         private ProjectEditPanel(ProjectPanel projectPanel, Project theProject) {
             myOldProject = theProject;
@@ -389,7 +403,8 @@ public class ProjectPanel extends JPanel implements ActionListener{
 
         /**
          * Update the current project to be this project.
-         * @author caleb
+         * 
+         * @author Caleb
          */
         private void updateProject() {
             String title = myTxtTitle.getText();
@@ -401,14 +416,15 @@ public class ProjectPanel extends JPanel implements ActionListener{
             }
             setCurrentProject(ProjectManager.getCurrentProjectIndex());
         }
-
     }    
 
 
     /**
-     * updates the mainframe title to match this project index title and sets the current project to this indexs project.
+     * updates the mainframe title to match this project index title and sets the current project to this index's project.
+     * 
      * @param index
-     * @author caleb
+     * 
+     * @author Caleb
      */
     private void setCurrentProject(int index) {
         ProjectManager.setCurrentProject(index);
@@ -418,8 +434,10 @@ public class ProjectPanel extends JPanel implements ActionListener{
 
     /**
      * calls the mainframes set title method with the title passed in here.
+     * 
      * @param title
-     * @author caleb
+     * 
+     * @author Caleb
      */
     private void setFrameTitle(String title) {
         getMainFrame().SetTitle(title);
@@ -427,8 +445,10 @@ public class ProjectPanel extends JPanel implements ActionListener{
     
     /**
      * gives the windowAncestor for this assuming it is a MainFrame.
-     * @return
-     * @author caleb
+     * 
+     * @return the main frame
+     * 
+     * @author Caleb
      */
     private MainFrame getMainFrame() {
         return (MainFrame) SwingUtilities.getWindowAncestor(this);
@@ -436,7 +456,8 @@ public class ProjectPanel extends JPanel implements ActionListener{
     
     /**
      * sets the frames home page to the home page.
-     * @author caleb
+     * 
+     * @author Caleb
      */
     private void setPageToHome() {
         getMainFrame().changePanel(PAGE.HOME);
@@ -444,8 +465,8 @@ public class ProjectPanel extends JPanel implements ActionListener{
 
     /**
      * panel for selecting an existing project.
-     * @author caleb
-     *
+     * 
+     * @author Caleb
      */
     private class ProjectExistingPanel extends JPanel {
         /**
@@ -508,9 +529,11 @@ public class ProjectPanel extends JPanel implements ActionListener{
 
         /**
          * method to limit character size of money for display in panels.
+         * 
          * @param tempCost
-         * @return
-         * @author caleb
+         * @return A limited character string representation of an amount of money
+         * 
+         * @author Caleb
          */
         private String makeSmallMoney(Double tempCost) {
             DecimalFormat df = new DecimalFormat("#.##");
@@ -537,7 +560,9 @@ public class ProjectPanel extends JPanel implements ActionListener{
      * for static buttons the COMMAND enum is used, for dynamic buttons prefixes are used and 
      * the related identifier is appended to the end of the action command.
      * maybe these prefixes could be in an enum instead and then appended.
-     * @author caleb
+     * 
+     * @author Caleb
+     * @author Michelle added piece of code to add a receipt
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -669,6 +694,8 @@ public class ProjectPanel extends JPanel implements ActionListener{
     }
     
     /**
+     * Will open the receipts page.
+     * 
      * @author Michelle
      */
     private void openReceiptsPage() {
@@ -679,7 +706,6 @@ public class ProjectPanel extends JPanel implements ActionListener{
         this.repaint();
         this.validate();
     }
-
 
 
 }

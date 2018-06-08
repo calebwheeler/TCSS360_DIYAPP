@@ -1,6 +1,5 @@
 package model;
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -12,6 +11,15 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+/**
+ * A class to hold methods that can be considered basic "utility" methods than can be
+ * used throughout the application
+ * 
+ * @author Caleb Wheeler
+ * @author David Guerrero
+ * 
+ * @version May 21, 2018
+ */
 public class Utility {
 
     
@@ -23,6 +31,7 @@ public class Utility {
      * @param FileName
      * @return the string read from the file
      * @throws FileNotFoundException
+     * 
      * @author David
      */
     public static String ReadTextFile(String FileName) throws FileNotFoundException {
@@ -45,20 +54,18 @@ public class Utility {
             e.printStackTrace();
         }
         return myText;
-    }
-    
-    
-    
-    
+    }    
     
     /**
      * load a file that contains a json object and return the json object saved in that file.
      * look at https://www.mkyong.com/java/json-simple-example-read-and-write-json/ 
      * for info on how to parse the json object.
+     * 
      * @throws ParseException 
      * @throws IOException 
      * @throws FileNotFoundException 
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public static JSONObject loadJSONFile(String theFilePath) {
         JSONParser parser = new JSONParser();
@@ -90,7 +97,8 @@ public class Utility {
     /**
      * look at https://crunchify.com/how-to-write-json-object-to-file-in-java/
      * for how to create a json object to be saved.
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public static void saveJSONFile(JSONObject theObjectToSave, String theFilePath) {
         System.out.println("saving:"+theObjectToSave);
@@ -111,7 +119,8 @@ public class Utility {
      * 
      * @param aboutText the text to show 
      * @return returns an html 
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public static String convertToHTML(String aboutText) {
         return "<html>" + aboutText
@@ -120,4 +129,5 @@ public class Utility {
                         .replaceAll("\n", "<br/>")
                         + "</html>";
     }
+    
 }

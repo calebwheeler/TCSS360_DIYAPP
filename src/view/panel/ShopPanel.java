@@ -1,6 +1,5 @@
 package view.panel;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
@@ -12,7 +11,6 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.border.LineBorder;
 
 import model.Material;
 import model.Project;
@@ -21,8 +19,12 @@ import model.ShopSim;
 import model.Utility;
 
 /**
+ * The panel that will display all of the materials that the user can purchase
+ * and/or add to their current project
  * 
- * @author David
+ * @author David Guerrero
+ * 
+ * @version May 31, 2018
  */
 public class ShopPanel extends JPanel {
 
@@ -38,11 +40,13 @@ public class ShopPanel extends JPanel {
     
     /**
      * Takes in text to display in a panel and a minimum size the panel can be displayed in.
+     * 
      * @param aboutText the text to display
      * @param width minimum width of the panel
      * @param height minimum height of the panel
+     * 
      * @author David
-     * @author caleb
+     * @author Caleb
      */
     public ShopPanel(ShopSim testStore) {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();

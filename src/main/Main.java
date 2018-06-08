@@ -8,10 +8,8 @@ import view.GUI;
 /**
  * The main method that runs the program.
  *
- * @author Dirty Water dirtywater365@gmail.com 
  * @author Jim Phan phanjim2@hotmail.com
- * @author Michelle Brown
- * @author David Guerrero
+ * 
  * @version Apr 26, 2018
  */
 public final class Main {

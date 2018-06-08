@@ -1,13 +1,16 @@
 package model;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  * Class that holds information about a material a user may choose to add
  * to their project from the shop.
  * 
- * @author David
- * @author Michelle
+ * @author David Guerrero
+ * @author Michelle Brown
+ * 
+ * @version May 25, 2018
  */
 public class Material implements Serializable{
 
@@ -16,19 +19,35 @@ public class Material implements Serializable{
      */
     private static final long serialVersionUID = -8314551894492343040L;
 
-    public String myName;
+    private String myName;
 
-    public Double myPrice;
+    private Double myPrice;
 
-    public model.Measurement myMeasurement;
+    private Measurement myMeasurement;
 
-    public int myAmount;
+    private int myAmount;
 
-    public Material(String theName, double thePrice, model.Measurement measurement) {
+    /**
+     * Constructor that creates a new Material of amount 1
+     * 
+     * @param theName
+     * @param thePrice
+     * @param measurement
+     */
+    public Material(String theName, double thePrice, Measurement measurement) {
         this(theName, thePrice, measurement, 1);
     }
     
-    public Material(String theName, double thePrice, model.Measurement theMeasurement, int theAmount) {
+    /**
+     * Constructor that creates a new Material with specified amount
+     * 
+     * @param theName
+     * @param thePrice
+     * @param theMeasurement
+     * @param theAmount
+     */
+    public Material(String theName, double thePrice, Measurement theMeasurement,
+                    int theAmount) {
         myName = theName;
         myPrice = thePrice;
         myMeasurement = theMeasurement;
@@ -36,9 +55,48 @@ public class Material implements Serializable{
     }
 
     public String toString() {
-        return  myName + "\nCost = $" + myPrice + "\nMeasurment = " + myMeasurement.toString() + "\n\n";
+        return  myName + "\nCost = $" + myPrice + "\nMeasurment = " +
+                        myMeasurement.toString() + "\n\n";
     }
 
+    public String getMeasurements() {
+        if(myMeasurement != null) {
+            return myMeasurement.toString();
+        } else {
+            return "";
+        }
+    }
+    
+    /**
+     * Returns the price of the material.
+     * 
+     * @return The price of the material.
+     * @author Jim
+     */
+    public double getPrice() {
+        return myPrice;
+    }
+    
+    /**
+     * Returns the amount of materials there are.
+     * 
+     * @return The amount of materials.
+     * @author Jim
+     */
+    public int getAmount() {
+        return myAmount;
+    }
+    
+    /**
+     * Set the amount of materials to the object.
+     * 
+     * @param amount The amount.
+     * @author Jim
+     */
+    public void setAmount(int amount) {
+        myAmount = amount;
+    }
+    
     public double totalCost() {
         return myPrice * myAmount;
     }
@@ -47,117 +105,62 @@ public class Material implements Serializable{
         return myName;
     }
     
-    
+    public Material clone() {
+        Material clone = new Material(myName, myPrice, myMeasurement, 1);
+        return clone;
+    }
     
     /**
-     * Inner class that defines the way a Material can be measured.
-     * Assumes that if we are using the imperial standard,
-     * measurements will be in inches (length) or ounces (weight),
-     * and if we are using the metric standard,
-     * measurements will be in cm (length) or grams (weight). 
-     * Default standard is imperial.
+     * Returns a comparator object used to sort the materials.
      * 
-     * @author Michelle
+     * @return A comparator object.
+     * @author Jim
      */
-    class Measurement {
-
-        boolean imperial; //defaults to true
-
-        MeasurementType measurementType;
-
-        double width;
-
-        double height;
-
-        double depth;
-
-        double weight;
-
-        /**
-         * Constructor.
-         * 
-         * @param measurementType
-         * @param width
-         * @param height
-         * @param depth
-         * @param weight
-         */
-        private Measurement(MeasurementType measurementType, double width,
-                            double height, double depth, double weight) {
-            setMeasurements(measurementType, width, height, depth, weight);
-            imperial = true;
+    public static Comparator<Material> getComparator() {
+        return new MaterialComparator();
+    }
+    
+    /**
+     * Utility method used to compare two values with each other.
+     * 
+     * @param arg0
+     * @param arg1
+     * @return
+     */
+    public static int compareTo(Material arg0, Material arg1) {
+        //Compare the two names to see if there's a difference.
+        int compareString = arg0.getName().compareTo(arg1.getName());
+        //If the two strings are the same, check measurements if they're different.
+        if(compareString == 0) {
+            compareString = arg0.getMeasurements().compareTo(arg0.getMeasurements());
         }
-
-        /**
-         * Will set the measurement values based on the type of measurement being used.
-         * This is to make sure that no values get set that shouldn't be set.
-         * 
-         * @param measurementType
-         * @param width
-         * @param height
-         * @param depth
-         * @param weight
-         */
-        public void setMeasurements(MeasurementType measurementType, double width,
-                                     double height, double depth, double weight) {
-            if (measurementType == MeasurementType.weight) {
-                width = 0;
-                height = 0;
-                depth = 0;
-                this.weight = weight;
+        //If the two measurements are the same, finally check the prices.
+        if(compareString == 0) {
+            double price1 = arg0.getPrice();
+            double price2 = arg1.getPrice();
+            if(price1 < price2) {
+                compareString = -1;
+            } else if(price1 > price2) {
+                compareString = 1;
             } else {
-                this.width = width;
-                this.height = height;
-                if (measurementType == MeasurementType.w_h_d) {
-                    this.depth = depth;
-                } else
-                    this.depth = 0;
+                compareString = 0;
             }
         }
+        return compareString;
+    }
+    
+    /**
+     * The comparator class used to sort Material objects.
+     * 
+     * @author Jim Phan
+     * @version April 4, 2018
+     */
+    private static class MaterialComparator implements Comparator<Material> {
 
-        /**
-         * Will convert the measurement values to a different standard.
-         * If the standard being used is imperial, it will be converted to metric
-         * and visa versa.
-         */
-        private void convertStandards() {
-            if (measurementType == MeasurementType.weight) {
-                weight = convert(weight, false);
-            } else {
-                width = convert(width, true);
-                height = convert(height, true);;
-                if (measurementType == MeasurementType.w_h_d) {
-                    depth = convert(depth, true);
-                }
-            }
-        }
-        
-        /**
-         * Will help change the standard being used and return
-         * the new value of the unit of measurement.
-         * 
-         * @param num
-         * @param typeLength
-         * @return
-         */
-        private double convert(double num, boolean typeLength) { //1 = length, 0 = weight
-            double toMetric;
-            double toImperial;
-            if (typeLength) {
-                toMetric = 2.54; //converts from inches to cm
-            } else {
-                toMetric = 28.3495; //converts from ounces to grams
-            }
-            toImperial = 1/toMetric;
-            if (imperial) {
-                imperial = false;
-                return num*toMetric;
-            } else {
-                imperial = true;
-                return num*toImperial;
-            }
+        @Override
+        public int compare(Material arg0, Material arg1) {
+            return Material.compareTo(arg0, arg1);
         }
         
     }
-
 }

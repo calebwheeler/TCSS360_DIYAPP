@@ -8,10 +8,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The Simulation of a shop that contains materials.
+ * Could be replaced by a "real" shop that has materials offered through online service.
+ * 
+ * @author David Guerrero
+ * 
+ * @version May 31, 2018
+ */
 public class ShopSim {
     
     static List<Material> myMaterials = new ArrayList<Material>();
-    
     
     public String myText = "";
  
@@ -27,6 +34,7 @@ public class ShopSim {
         } 
         
     }
+    
     /**
      * Reads the contents of a file, and stores them in a public variable.
      * 
@@ -59,12 +67,9 @@ public class ShopSim {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
-        
         /*for (Material mat: myMaterials) {
             System.out.println(mat.toString());
         }*/
-        
     }
     
     public List<Material> getMyMaterials() {

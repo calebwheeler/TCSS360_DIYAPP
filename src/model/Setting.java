@@ -2,6 +2,13 @@ package model;
 
 import org.json.simple.JSONObject;
 
+/**
+ * User settings that are stored in a json file
+ * 
+ * @author Caleb Wheeler
+ * 
+ * @version May 21, 2018
+ */
 public class Setting {
 
     public String myFirstName;
@@ -24,8 +31,10 @@ public class Setting {
     
     /**
      * load the saved json object and set first name and email by given keys in json file.
+     * 
      * @param filePath
-     * @author caleb
+     * 
+     * @author Caleb
      */
     private void loadSettings() {
         JSONObject jObj = Utility.loadJSONFile(SETTING_FILE_PATH);
@@ -34,14 +43,15 @@ public class Setting {
              myFirstName = (String) jObj.get(KEY_NAME);
              myEmail = (String) jObj.get(KEY_EMAIL);
         } 
-
     }
     
     /**
      * save the settings to file as a json object.
+     * 
      * @param name user given first name for settings.
      * @param email user given email.
-     * @author caleb
+     * 
+     * @author Caleb
      */
     public void saveSettings(String name, String email) {
         JSONObject obj = new JSONObject();
@@ -51,7 +61,3 @@ public class Setting {
         Utility.saveJSONFile(obj, SETTING_FILE_PATH);
     }
 }
-
-
-
-

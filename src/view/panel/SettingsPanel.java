@@ -19,7 +19,9 @@ import model.Utility;
  * Panel to display the current user settings. Gives an option to change them
  * and export to file to sync to other devices at a later point.
  * 
- * @author Michelle
+ * @author Michelle Brown
+ * 
+ * @version May 21, 2018
  */
 public class SettingsPanel extends JPanel {
 
