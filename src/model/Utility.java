@@ -61,9 +61,7 @@ public class Utility {
      * look at https://www.mkyong.com/java/json-simple-example-read-and-write-json/ 
      * for info on how to parse the json object.
      * 
-     * @throws ParseException 
-     * @throws IOException 
-     * @throws FileNotFoundException 
+     * @return the json object
      * 
      * @author Caleb
      */

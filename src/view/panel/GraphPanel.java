@@ -25,6 +25,14 @@ public class GraphPanel extends JPanel {
     
     private List<Receipt> graphReceipts;
     
+    /**
+     * Constructor.
+     * 
+     * @param size
+     * @param receipts
+     * 
+     * @author Jim
+     */
     public GraphPanel(Dimension size, List<Receipt> receipts) {
         int width = (int) (size.width * 0.9);
         int height = (int) (size.height * 0.9);
@@ -43,6 +51,5 @@ public class GraphPanel extends JPanel {
     @Override
     public void paintComponent(final Graphics g) {
         super.paintComponent(g);
-        
     }
 }

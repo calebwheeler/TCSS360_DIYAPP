@@ -5,7 +5,7 @@ import java.io.FileNotFoundException;
 
 import org.junit.Test;
 
-import main.ReadTextFile;
+import model.Utility;
 
 /**
  * JUnit tests for the class ReadTextFile
@@ -20,12 +20,14 @@ public class ReadTextFileTest {
 
     /**
      * Makes sure the method doesn't throw a FileNotFoundException when the file exists
+     * 
+     * @author Michelle
      */
     @Test
     public void testValidFilename() {
         boolean thrown;
         try {
-            new ReadTextFile(validFilename);
+            Utility.ReadTextFile(validFilename);
             thrown = false;
         }
         catch (FileNotFoundException e) {
@@ -39,12 +41,14 @@ public class ReadTextFileTest {
 
     /**
      * Checks if the method throws FileNotFoundException when given a bad filename
+     * 
+     * @author Michelle
      */
     @Test//(expected = IOException.class)
     public void testBadFilename() {
         boolean thrown;
         try {
-            new ReadTextFile(badFilename);
+            Utility.ReadTextFile(badFilename);
             thrown = false;
         }
         catch (FileNotFoundException e) {

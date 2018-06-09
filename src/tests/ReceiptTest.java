@@ -16,7 +16,8 @@ import model.Receipt;
  * The Receipt JUnit test.
  * 
  * @author Jim Phan
- * @version June 5th, 2018
+ * 
+ * @version June 5, 2018
  */
 public class ReceiptTest {
 
@@ -29,6 +30,13 @@ public class ReceiptTest {
     
     private Measurement testMeasurement;
     
+    /**
+     * Sets up the Receipt.
+     * 
+     * @throws Exception
+     * 
+     * @author Jim
+     */
     @Before
     public void setUp() throws Exception {
         testMeasurement = new Measurement(MeasurementType.w_h_d, 1.0, 2.0, 3.0, 0.0);
@@ -36,6 +44,11 @@ public class ReceiptTest {
         testReceipt = new Receipt(testMaterial);
     }
 
+    /**
+     * Material to receipt check
+     * 
+     * @author Jim
+     */
     @Test
     public void testReceiptMaterial() {
         Measurement measurement = new Measurement(MeasurementType.w_h_d, 1.0, 2.0, 3.0, 0.0);
@@ -47,12 +60,22 @@ public class ReceiptTest {
         assertTrue(receipt.getNote().equals(testReceipt.getNote()));
     }
 
+    /**
+     * Cost value check
+     * 
+     * @author Jim
+     */
     @Test
     public void testGetCost() {
         Receipt receipt = new Receipt("Test", 2500.00, LocalDate.now().toString(), "note");
         assertTrue(receipt.getCost() == 2500.00);
     }
 
+    /**
+     * Constructor check
+     * 
+     * @author Jim
+     */
     @Test
     public void testInputReceiptConstructor() {
         Receipt receipt = new Receipt("Test Title", 300.00, LocalDate.now().toString(), "note!");

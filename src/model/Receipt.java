@@ -12,6 +12,7 @@ import java.util.Date;
  * or they can enter the information from an item purchased elsewhere.
  * 
  * @author Michelle Brown
+ * @author Jim Phan - added a comparator & encapsulation
  * 
  * @version May 29, 2018
  */
@@ -63,6 +64,8 @@ public class Receipt implements Serializable {
      * 
      * @param cost
      * @param note
+     * 
+     * @author Michelle
      */
     public Receipt(String title, double cost, String date, String note) {
         //date in the form MM/dd/yyyy
@@ -74,10 +77,20 @@ public class Receipt implements Serializable {
         myNote = note;
     }
     
+    /**
+     * @return the cost of the receipt
+     * 
+     * @author Jim
+     */
     public Double getCost() {
         return myCost;
     }
     
+    /**
+     * @return the title of the receipt
+     * 
+     * @author Jim
+     */
     public String getTitle() {
         return myTitle;
     }
@@ -86,6 +99,7 @@ public class Receipt implements Serializable {
      * Return the date of the receipt.
      * 
      * @return The date of the receipt.
+     * 
      * @author Jim
      */
     public LocalDate getDate() {
@@ -96,6 +110,7 @@ public class Receipt implements Serializable {
      * Return the note of the receipt.
      * 
      * @return the note of the receipt.
+     * 
      * @author Jim
      */
     public String getNote() {
@@ -111,6 +126,7 @@ public class Receipt implements Serializable {
      * Returns a comparator used to sort the receipts.
      * 
      * @return A comparator used to sort the receipts.
+     * 
      * @author Jim
      */
     public static Comparator<Receipt> getComparator() {
@@ -120,15 +136,14 @@ public class Receipt implements Serializable {
     /**
      * Comparator class used to compare the Receipts.
      * 
-     * @author Jim Phan
+     * @author Jim
+     * 
      * @version 6/4/2018
      */
     private static class ReceiptComparator implements Comparator<Receipt> {
-
         @Override
         public int compare(Receipt o1, Receipt o2) {
             return o1.getDate().compareTo(o2.getDate());
         }
-        
     }
 }

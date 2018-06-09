@@ -46,7 +46,7 @@ public class ShopPanel extends JPanel {
      * @param height minimum height of the panel
      * 
      * @author David
-     * @author Caleb
+     * @author Caleb - refactored shop items buttons actionlistener
      */
     public ShopPanel(ShopSim testStore) {
         Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
@@ -71,8 +71,14 @@ public class ShopPanel extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     Integer index = ProjectManager.getCurrentProjectIndex();
                     Project p = ProjectManager.getProject(index);
-                    p.addMaterial(mat);
-                    ProjectManager.updateProject(index, p.getTitle(), p.getMaterials(), p.getReceipts());
+                    if(p.getMaterials().contains(mat)) {
+                        p.getMaterials().get(p.getMaterials().indexOf(mat)).
+                        setAmount(p.getMaterials().get(p.getMaterials().indexOf(mat)).getAmount() + 1);
+                    } else {
+                        p.addMaterial(mat); 
+                    }
+                    ProjectManager.updateProject(index, p.getTitle(), p.getMaterials(), p.getReceipts()); 
+                    
                 }
                 
             });

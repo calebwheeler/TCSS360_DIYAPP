@@ -16,6 +16,13 @@ public class Graph {
     
     private List<Receipt> graphReceipt;
     
+    /**
+     * Creates a graph based on a list of receipts
+     * 
+     * @param receipts
+     * 
+     * @author Jim
+     */
     public Graph(List<Receipt> receipts) {
         graphReceipt = new ArrayList<Receipt>();
         if(receipts != null) {

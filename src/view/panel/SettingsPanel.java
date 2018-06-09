@@ -51,12 +51,13 @@ public class SettingsPanel extends JPanel {
     private String email;
 
 
-
     /**
      * The constructor that creates the panel where the user can
      * see all of their custom user settings
      * 
      * @param size
+     * 
+     * @author Michelle
      */
     public SettingsPanel (Dimension size) {
         this.setLayout(new BorderLayout());

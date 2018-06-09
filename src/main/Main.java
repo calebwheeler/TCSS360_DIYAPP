@@ -18,6 +18,8 @@ public final class Main {
      * The main method that runs.
      * 
      * @param args Command line arguments.
+     * 
+     * @author Jim
      */
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {

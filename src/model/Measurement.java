@@ -32,13 +32,15 @@ public class Measurement implements Serializable {
     private double myWeight;
 
     /**
-     * Constructor.
+     * Constructor that allows you to specify measurement type
      * 
      * @param measurementType
      * @param width
      * @param height
      * @param depth
      * @param weight
+     * 
+     * @author Michelle
      */
     public Measurement(MeasurementType measurementType, double width,
                         double height, double depth, double weight) {
@@ -46,9 +48,22 @@ public class Measurement implements Serializable {
         imperial = true;
     }
 
+    /**
+     * Default constructor.
+     * 
+     * @param theWidth
+     * @param theHeight
+     * @param theDepth
+     * @param theWeight
+     * 
+     * @author Michelle
+     */
     public Measurement(double theWidth, double theHeight, double theDepth,
                        double theWeight) {
         myWidth = theWidth;
+        myHeight = theHeight;
+        myDepth = theDepth;
+        myWeight = theWeight;
         imperial = true;
     }
     
@@ -61,6 +76,8 @@ public class Measurement implements Serializable {
      * @param height
      * @param depth
      * @param weight
+     * 
+     * @author Michelle
      */
     public void setMeasurements(MeasurementType measurementType, double width,
                                  double height, double depth, double weight) {
@@ -83,6 +100,8 @@ public class Measurement implements Serializable {
      * Will convert the measurement values to a different standard.
      * If the standard being used is imperial, it will be converted to metric
      * and visa versa.
+     * 
+     * @author Michelle
      */
     public void convertStandards() {
         if (measurementType == MeasurementType.weight) {
@@ -102,7 +121,9 @@ public class Measurement implements Serializable {
      * 
      * @param num
      * @param typeLength
-     * @return
+     * @return the converted number
+     * 
+     * @author Michelle
      */
     public double convert(double num, boolean typeLength) { //1 = length, 0 = weight
         double toMetric;
@@ -122,6 +143,9 @@ public class Measurement implements Serializable {
         }
     }
     
+    /**
+     * @author Michelle
+     */
     public String toString() {
         return  myWidth + ", " + myHeight + ", " + myDepth + ", " + myWeight;
     }

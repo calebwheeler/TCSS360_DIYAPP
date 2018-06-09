@@ -21,6 +21,11 @@ public class HomePanel extends JPanel {
 
     private static final long serialVersionUID = -1648973452334682043L;
 
+    /**
+     * Constructor
+     * 
+     * @author Michelle
+     */
     public HomePanel() {
         JLabel imageLabel = new JLabel();
         ImageIcon home_lightsoff = null;
@@ -39,6 +44,8 @@ public class HomePanel extends JPanel {
     /**
      * A private MouseAdapter class that helps change an image
      * based on if the mouse is hovering over it or not.
+     * 
+     * @author Michelle
      */
     private class Hover extends MouseAdapter {
 

@@ -47,6 +47,11 @@ public class ProjectManager implements Serializable{
         return myProjects.get(index);
     }
     
+    /**
+     * @return the index the current project is sitting
+     * 
+     * @author Caleb
+     */
     public static Integer getCurrentProjectIndex() {
         return myCurrentProjectIndex;
     }
@@ -81,8 +86,8 @@ public class ProjectManager implements Serializable{
     /**
      * gives the index in the list of projects of the searched project or -1 if not found.
      * 
-     * @param index
-     * @return the project at index
+     * @param theProject
+     * @return the index of the project
      * 
      * @author Caleb
      */

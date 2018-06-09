@@ -35,7 +35,10 @@ public class GUI {
 	
 	/**
 	 * The constructor. Used to starts the frame.
+	 * 
 	 * @throws IOException 
+	 * 
+	 * @author Jim
 	 */
 	public GUI() throws IOException {
 		myFrame = new MainFrame(WIDTH, HEIGHT);
@@ -43,6 +46,8 @@ public class GUI {
 	
 	/**
 	 * Initialize the frame and starts the program.
+	 * 
+	 * @author Jim
 	 */
 	public void start() {
 		myFrame.setTitle(TITLE);
@@ -50,6 +55,8 @@ public class GUI {
 	
 	/**
 	 * Ends and dispose of the frame.
+	 * 
+	 * @author Jim
 	 */
 	public void end() {
 		myFrame.dispose();

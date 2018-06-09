@@ -8,7 +8,7 @@ import java.util.Comparator;
  * to their project from the shop.
  * 
  * @author David Guerrero
- * @author Michelle Brown
+ * @author Jim Phan - added a comparator & encapsulation
  * 
  * @version May 25, 2018
  */
@@ -33,6 +33,8 @@ public class Material implements Serializable{
      * @param theName
      * @param thePrice
      * @param measurement
+     * 
+     * @author David
      */
     public Material(String theName, double thePrice, Measurement measurement) {
         this(theName, thePrice, measurement, 1);
@@ -45,6 +47,8 @@ public class Material implements Serializable{
      * @param thePrice
      * @param theMeasurement
      * @param theAmount
+     * 
+     * @author David
      */
     public Material(String theName, double thePrice, Measurement theMeasurement,
                     int theAmount) {
@@ -54,11 +58,19 @@ public class Material implements Serializable{
         myAmount = theAmount;
     }
 
+    /**
+     * @author David
+     */
     public String toString() {
         return  myName + "\nCost = $" + myPrice + "\nMeasurment = " +
                         myMeasurement.toString() + "\n\n";
     }
 
+    /**
+     * @return the measurements in String format
+     * 
+     * @author David
+     */
     public String getMeasurements() {
         if(myMeasurement != null) {
             return myMeasurement.toString();
@@ -71,6 +83,7 @@ public class Material implements Serializable{
      * Returns the price of the material.
      * 
      * @return The price of the material.
+     * 
      * @author Jim
      */
     public double getPrice() {
@@ -81,6 +94,7 @@ public class Material implements Serializable{
      * Returns the amount of materials there are.
      * 
      * @return The amount of materials.
+     * 
      * @author Jim
      */
     public int getAmount() {
@@ -91,16 +105,29 @@ public class Material implements Serializable{
      * Set the amount of materials to the object.
      * 
      * @param amount The amount.
+     * 
      * @author Jim
      */
     public void setAmount(int amount) {
         myAmount = amount;
     }
     
+    /**
+     * Gets the total price of all of this material
+     * 
+     * @return the price of one * the amount
+     * 
+     * @author David
+     */
     public double totalCost() {
         return myPrice * myAmount;
     }
     
+    /**
+     * @return the name
+     * 
+     * @author Jim
+     */
     public String getName() {
         return myName;
     }
@@ -114,6 +141,7 @@ public class Material implements Serializable{
      * Returns a comparator object used to sort the materials.
      * 
      * @return A comparator object.
+     * 
      * @author Jim
      */
     public static Comparator<Material> getComparator() {
@@ -126,6 +154,8 @@ public class Material implements Serializable{
      * @param arg0
      * @param arg1
      * @return
+     * 
+     * @author Jim
      */
     public static int compareTo(Material arg0, Material arg1) {
         //Compare the two names to see if there's a difference.
@@ -152,7 +182,8 @@ public class Material implements Serializable{
     /**
      * The comparator class used to sort Material objects.
      * 
-     * @author Jim Phan
+     * @author Jim
+     * 
      * @version April 4, 2018
      */
     private static class MaterialComparator implements Comparator<Material> {
@@ -161,6 +192,5 @@ public class Material implements Serializable{
         public int compare(Material arg0, Material arg1) {
             return Material.compareTo(arg0, arg1);
         }
-        
     }
 }

@@ -24,6 +24,11 @@ public class ShopSim {
  
     private static final String STORE_SAVEFILE = "simstore.CSV";
     
+    /**
+     * Constructor
+     * 
+     * @author David
+     */
     public ShopSim() {
         try {
             getMaterials(STORE_SAVEFILE);
@@ -40,6 +45,8 @@ public class ShopSim {
      * 
      * @param FileName
      * @throws FileNotFoundException
+     * 
+     * @author David
      */
     public static void getMaterials(String FileName) throws FileNotFoundException {
         
@@ -60,7 +67,6 @@ public class ShopSim {
                                                              Double.valueOf(theLineSplit[3]),
                                                              Double.valueOf(theLineSplit[4]),
                                                              Double.valueOf(theLineSplit[5]))));
-                    
             }
             bufferedStream.close();
         } catch (IOException e) {
@@ -72,10 +78,19 @@ public class ShopSim {
         }*/
     }
     
+    /**
+     * 
+     * @return the list of materials
+     * 
+     * @author David
+     */
     public List<Material> getMyMaterials() {
         return myMaterials;
     }
     
+    /**
+     * @author David
+     */
     public String toString() {
         String result = "";
         for (Material mat: myMaterials) {

@@ -19,6 +19,14 @@ public class DisplayPanel extends JPanel {
      */
     private static final long serialVersionUID = -641610218954440272L;
 
+    /**
+     * Constructor
+     * 
+     * @param color
+     * @param dimension
+     * 
+     * @author Jim
+     */
     public DisplayPanel(Color color, Dimension dimension) {
         this.setBackground(color);
         int width = (int) (dimension.width * 0.85);

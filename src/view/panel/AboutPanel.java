@@ -33,6 +33,8 @@ public class AboutPanel extends JPanel {
      * @param aboutText the text to display
      * @param width minimum width of the panel
      * @param height minimum height of the panel
+     * 
+     * @author Caleb
      */
     public AboutPanel(String aboutText) { 
 //        aboutText = convertToHTML(aboutText);

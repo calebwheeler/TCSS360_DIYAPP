@@ -51,6 +51,8 @@ public class ReportPanel extends JPanel {
      * The Constructor. Used to set up a report.
      * 
      * @param project The current project selected.
+     * 
+     * @author Jim
      */
     public ReportPanel(Project project) {
         reportProject = project;
@@ -68,6 +70,8 @@ public class ReportPanel extends JPanel {
     
     /**
      * Returns the String representation of the full project report.
+     * 
+     * @author Jim
      */
     @Override
     public String toString() {
@@ -76,6 +80,8 @@ public class ReportPanel extends JPanel {
     
     /**
      * Method used to build the report's string.
+     * 
+     * @author Jim
      */
     private void buildReport() {
         if(reportProject == null) {
@@ -128,6 +134,8 @@ public class ReportPanel extends JPanel {
      * Helps the set up of the report building with materials.
      * 
      * @return A map of the materials.
+     * 
+     * @author Jim
      */
     private Map<String, Material> countMaterials() {
         Map<String, Material> map = new HashMap<String, Material>();
@@ -148,6 +156,8 @@ public class ReportPanel extends JPanel {
      * Create a JButton used to export the data.
      * 
      * @return A JButton.
+     * 
+     * @author Jim
      */
     private JButton createExportButton() {
         JButton button = new JButton();
@@ -163,6 +173,8 @@ public class ReportPanel extends JPanel {
     
     /**
      * Helper method to write the file to a text.
+     * 
+     * @author Jim
      */
     private void writeToFile() {
         String title = reportProject.getTitle();

@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
 import javax.swing.border.EtchedBorder;
 
@@ -29,7 +30,7 @@ import view.MainFrame.PAGE;
  * The Panel that handles displaying and adding information about the user's projects.
  * 
  * @author Caleb Wheeler
- * @author Michelle Brown
+ * @author Michelle Brown - mainly created the receipt panel
  * 
  * @version May 29, 2018
  */
@@ -40,6 +41,11 @@ public class ProjectPanel extends JPanel implements ActionListener{
      */
     private static final long serialVersionUID = 6230144897462569298L;
 
+    /**
+     * An action that can happen in this panel
+     * 
+     * @author Caleb
+     */
     private enum COMMAND {
         EDIT_PROJECT, EXISTING_PROJECT, MATERIALS, RECEIPTS, SAVE_PROJECT_EDIT, CLOSE_PANEL,
         PREFIX_EDIT_EXISTING_PROJECT, PREFIX_SELECT_PROJECT, PREFIX_REMOVE_MATERIAL,
@@ -91,8 +97,9 @@ public class ProjectPanel extends JPanel implements ActionListener{
          * panel to ask user if they want to use an existing or create a new project.
          * 
          * @param projectPanel
+         * 
          * @author Caleb
-         * @author David add current project
+         * @author David - added current project
          */
         private ProjectAskPanel(ProjectPanel projectPanel) {
             //create new project button
@@ -122,7 +129,7 @@ public class ProjectPanel extends JPanel implements ActionListener{
      * this panel allows viewing all receipts for the current project and removing receipts from the project.
      * 
      * @author Caleb
-     * @author Michelle added "add receipt" button
+     * @author Michelle - added "add receipt" button
      */
     private class ProjectReceiptsPanel extends JPanel {
 
@@ -252,6 +259,7 @@ public class ProjectPanel extends JPanel implements ActionListener{
      * this panel allows viewing all materials for the current project and removing materials from the project.
      * 
      * @author Caleb
+     * @author David - refactored to get materials with more than one count to show up as one.
      */
     private class ProjectMaterialsPanel extends JPanel {
         /**
@@ -273,8 +281,8 @@ public class ProjectPanel extends JPanel implements ActionListener{
             if(theProject != null) {
                 List<Material> mats = theProject.getMaterials();
                 for(Material mat : mats) {
-                    String matText = mat.getName() +" $" + mat.totalCost() + " ";
-
+                    String matText = mat.getName() +" $" + String.format("%.2f", mat.totalCost()) + " Count: " + mat.getAmount() + "  ";
+                    
                     JButton btnRemove = new JButton("Remove");
                     btnRemove.addActionListener(projectPanel);
                     btnRemove.setActionCommand(/*"_R"*/COMMAND.PREFIX_REMOVE_MATERIAL.name() + mat.toString());
@@ -493,12 +501,12 @@ public class ProjectPanel extends JPanel implements ActionListener{
                 JPanel panel = new JPanel(layout);
                 String cost = "";
                 Double tempCost = proj.estimateTotal();
-                cost = makeSmallMoney(tempCost);
+                cost = String.format("%.2f", tempCost);
                 JLabel displayText = new JLabel(proj.getTitle().substring
                                                 (0, Integer.min(maxCharsInTitleLabel, proj.getTitle().length())) +
                                                 "   Created: " + proj.getDateCreated() +
                                                 "   Modified: "+ proj.getDateLastModified() +
-                                                "   Cost: $" + cost);
+                                                "   Cost: $" + cost + " ");
                 int projIndex = ProjectManager.getIndex(proj);
 
                 JButton btnEdit = new JButton("Edit");
@@ -562,7 +570,7 @@ public class ProjectPanel extends JPanel implements ActionListener{
      * maybe these prefixes could be in an enum instead and then appended.
      * 
      * @author Caleb
-     * @author Michelle added piece of code to add a receipt
+     * @author Michelle - added piece of code to add a receipt
      */
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -706,6 +714,5 @@ public class ProjectPanel extends JPanel implements ActionListener{
         this.repaint();
         this.validate();
     }
-
 
 }
